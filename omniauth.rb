@@ -15,10 +15,10 @@ route "match '/logout', :to => 'sessions#destroy'"
 generate "model authorization provider:string uid:string user_id:integer"
 generate "model user name:string"
 
-get "http://github.com/aentos/rails3-templates/raw/master/omniauth/user.rb", "app/models/user.rb"
-get "http://github.com/aentos/rails3-templates/raw/master/omniauth/authorization.rb", 'app/models/authorization.rb'
-get "http://github.com/aentos/rails3-templates/raw/master/omniauth/sessions_controller.rb", "app/controllers/sessions_controller.rb"
-get "http://github.com/aentos/rails3-templates/raw/master/omniauth/application_controller.rb", "app/controllers/application_controller.rb"
+get "https://github.com/aentos/rails3-templates/raw/master/omniauth/user.rb", "app/models/user.rb"
+get "https://github.com/aentos/rails3-templates/raw/master/omniauth/authorization.rb", 'app/models/authorization.rb'
+get "https://github.com/aentos/rails3-templates/raw/master/omniauth/sessions_controller.rb", "app/controllers/sessions_controller.rb"
+get "https://github.com/aentos/rails3-templates/raw/master/omniauth/application_controller.rb", "app/controllers/application_controller.rb"
 
 git :add => '.'
 git :commit => '-m "Ominauth"'
