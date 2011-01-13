@@ -1,51 +1,57 @@
-gem "capistrano"
-run "bundle install"
-capify!
-
 app_name = ask "\r\n\r\nEnter the application name:"
 server = ask "\r\n\r\nEnter the servername or IP:"
 git_repo = ask "\r\n\r\nEnter the git repo URL, e.g. git@github.com:aentos/app.git :"
+hoptoad = yes?"\r\n\r\nDo you want to include hoptoad notifier in your capistrano configuration? (yes/no)"
 
-file 'config/deploy.rb', <<-FILE
-# Bundler Integration
-# http://github.com/carlhuda/bundler/blob/master/lib/bundler/capistrano.rb
-require 'bundler/capistrano'
+gem "capistrano"
+gem "capistrano-ext", :require => "capistrano"
+
+
+run "bundle install"
+capify!
+
+file 'config/deploy/staging.rb', <<-FILE
+#############################################################
+#       Settings
+#############################################################
+set :rails_env, "staging"
 
 # Application Settings
 set :application,   "#{app_name}"
-set :user,          "deployer"
-set :password,      "deployer"
-set :deploy_to,     "/var/rails/#{app_name}"
-set :rails_env,     "production"
+set :user,          "deploy"
+set :deploy_to,     "/var/rails/#{app_name}_staging"
 set :use_sudo,      false
 set :keep_releases, 5
-
-# Git Settings
-set :scm,           :git
-set :branch,        "master"
-set :repository,    "#{git_repo}"
-set :deploy_via,    :remote_cache
-
-# Uses local instead of remote server keys, good for github ssh key deploy.
-ssh_options[:forward_agent] = true
 
 # Server Roles
 role :web, "#{server}"
 role :app, "#{server}"
 role :db,  "#{server}", :primary => true
 
-# Passenger Deploy Reconfigure
-namespace :deploy do
-  desc "Restart passenger process"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch \#{current_path}/tmp/restart.txt"
-  end
+FILE
+
+file 'config/deploy/production.rb', <<-FILE
+#############################################################
+#       Settings
+#############################################################
+set :rails_env, "production"
+
+# Application Settings
+set :application,   "#{app_name}"
+set :user,          "deploy"
+set :deploy_to,     "/var/rails/#{app_name}_production"
+set :use_sudo,      false
+set :keep_releases, 5
+
+# Server Roles
+role :web, "#{server}"
+role :app, "#{server}"
+role :db,  "#{server}", :primary => true
+
+FILE
+
+file 'config/deploy.rb', <<-FILE
  
-  [:start, :stop].each do |t|
-    desc "\#{t} does nothing for passenger"
-    task t, :roles => :app do ; end
-  end
-end
 FILE
 git :add => '.'
 git :commit => '-m "Capistrano"'
