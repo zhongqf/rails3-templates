@@ -161,7 +161,7 @@ get "https://github.com/aentos/rails3-templates/raw/master/handheld.scss" ,"app/
 unless locale_str.empty?
   locales = locale_str.split(",")
   locales.each do |loc|
-    get("https://github.com/svenfuchs/rails-i18n/raw/master/rails/locale/#{loc.strip}.yml", file)
+    get("https://github.com/svenfuchs/rails-i18n/raw/master/rails/locale/#{loc.strip}.yml", "config/locales/#{loc.strip}.yml")
   end
 end
 
