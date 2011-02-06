@@ -13,6 +13,14 @@ file ".slugignore", <<-EOS.gsub(/^  /, '')
   doc
   docs
 EOS
+
+# The system in heroku is read-only (except for log and tmp)
+# Instead of letting the server compile the stylesheets when the requests hits the server
+# we commit the compiled stylesheets to the git repo
+# and tell compass to never compile
+append_file 'config/environments/production.rb', 'Sass::Plugin.options[:never_update] = true'
+gsub_file '.gitignore', /#^public\/stylesheets$/, ''
+
 git :add => '.'
 git :commit => "-a -m 'Add heroku .slugignore'"
 
