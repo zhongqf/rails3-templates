@@ -7,7 +7,7 @@ puts "**************************************************************************
 hoptoad_key = ask("\r\n\r\nWant to use your Hoptoad Account? (Skip if you are deploying to heroku)\n\r\n\rEnter your API Key, or press Enter to skip")
 locale_str = ask("Enter a list of locales you want to use separated by commas (e.g. 'es, de, fr'). For a reference list visit https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale/. Press enter to skip: ")
 auth_option = ask("\r\n\r\nWhat authentication framework do you want to use?\r\n\r\n(1) Devise\r\n(2) Authlogic\r\n(3) Omniauth\r\nPress Enter to skip")
-deploy_option = ask("\r\n\r\nWhat deploy method/target do you want to use?\r\n\r\n(1) Capistrano\r\n(2) Inploy\r\n(3)Heroku\r\nPress Enter to skip")
+deploy_option = ask("\r\n\r\nWhat deploy method/target do you want to use?\r\n\r\n(1) Capistrano\r\n(2) Inploy\r\n(3) Heroku\r\nPress Enter to skip")
 css_framework_option = ask("\r\n\r\nWhat CSS framework do you want to use?\r\n\r\n(1) 960\r\n(2) Blueprint\r\nPress Enter for 960 (default)")
 if ["1", "2", "3"].include?(auth_option)
   auth = "devise" if auth_option=="1"
