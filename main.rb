@@ -4,10 +4,10 @@ puts "\r\n\r\n******************************************************************
 puts "Let me ask you a few questions before i start bootstrapping your app"
 puts "*****************************************************************************************************"
 
-hoptoad_key = ask("\r\n\r\nWant to use your Hoptoad Account?\n\r\n\rEnter your API Key, or press Enter to skip")
+hoptoad_key = ask("\r\n\r\nWant to use your Hoptoad Account? (Skip if you are deploying to heroku)\n\r\n\rEnter your API Key, or press Enter to skip")
 locale_str = ask("Enter a list of locales you want to use separated by commas (e.g. 'es, de, fr'). For a reference list visit https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale/. Press enter to skip: ")
 auth_option = ask("\r\n\r\nWhat authentication framework do you want to use?\r\n\r\n(1) Devise\r\n(2) Authlogic\r\n(3) Omniauth\r\nPress Enter to skip")
-deploy_option = ask("\r\n\r\nWhat deploy method do you want to use?\r\n\r\n(1) Capistrano\r\n(2) Inploy\r\nPress Enter to skip")
+deploy_option = ask("\r\n\r\nWhat deploy method/target do you want to use?\r\n\r\n(1) Capistrano\r\n(2) Inploy\r\n(3)Heroku\r\nPress Enter to skip")
 css_framework_option = ask("\r\n\r\nWhat CSS framework do you want to use?\r\n\r\n(1) 960\r\n(2) Blueprint\r\nPress Enter for 960 (default)")
 if ["1", "2", "3"].include?(auth_option)
   auth = "devise" if auth_option=="1"
@@ -17,9 +17,10 @@ else
   auth = nil
 end
 
-if ["1", "2"].include?(deploy_option)
+if ["1", "2","3"].include?(deploy_option)
   deploy = "capistrano" if deploy_option=="1"
   deploy = "inploy" if deploy_option=="2"
+  deploy = "heroku" if deploy_option=="3"
 else
   deploy = nil
 end
@@ -65,12 +66,12 @@ gem "shoulda", :group => [:test, :shoulda]
 gem "faker", :group => [:test, :cucumber]
 gem "mynyml-redgreen", :group => :test, :require => "redgreen"
 
-gem 'cucumber', ">=0.6.3", :group => :cucumber
-gem 'cucumber-rails', ">=0.3.2", :group => :cucumber
-gem 'capybara', ">=0.3.6", :group => :cucumber
-gem 'database_cleaner', ">=0.5.0", :group => :cucumber
-gem 'spork', ">=0.8.4", :group => :cucumber
-gem "pickle", ">=0.4.2", :group => :cucumber
+gem 'cucumber', "~> 0.10.0", :group => :cucumber
+gem 'cucumber-rails', "~> 0.3.2", :group => :cucumber
+gem 'capybara', "~> 0.4.1", :group => :cucumber
+gem 'database_cleaner', "~> 0.5.0", :group => :cucumber
+gem 'spork', "~> 0.8.4", :group => :cucumber
+gem "pickle", "~> 0.4.2", :group => :cucumber
 gem "launchy", :group => :cucumber
 
 # staging & production stuff
