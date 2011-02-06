@@ -18,9 +18,9 @@
     -# %link{ :href => "/apple-touch-icon.png", :rel => "apple-touch-icon" }/
 
     %title= "[Default title] #{yield(:title)}"
-    = raw stylesheet_link_merged('screen')
+    = stylesheet_link_tag('screen')
     -# For the less-enabled mobile browsers like Opera Mini
-    = raw stylesheet_link_merged('handheld', :media => 'handheld')    
+    = stylesheet_link_tag('handheld', :media => 'handheld')    
     = csrf_meta_tag
   %body{ :class => "#{controller.controller_name}" }
     #container
@@ -37,4 +37,4 @@
           Copyright &copy; #{Date.today.year}
     %script{ :type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" }
     %script{ :type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" }
-    = raw javascript_include_merged(:base)
+    = javascript_include_tag("rails")

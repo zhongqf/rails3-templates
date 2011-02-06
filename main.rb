@@ -89,8 +89,6 @@ gem 'rails3-generators', :group => :development
 
 run "bundle install"
 
-plugin 'asset_packager', :git => 'git://github.com/sbecker/asset_packager.git'
-
 application  <<-GENERATORS
 config.generators do |g|
   g.orm :active_record
@@ -125,36 +123,9 @@ run "gem install compass"
 if css_framework=="960"
   run "compass init -r ninesixty --using 960 --app rails --css-dir public/stylesheets"
   get "https://github.com/aentos/rails3-templates/raw/master/application_960.html.haml", "app/views/layouts/application.html.haml"
-  file "config/asset_packages.yml", <<-FILE
----
-javascripts:
-- base:
-  - rails
-stylesheets:
-- screen:
-  - grid
-  - text
-- handheld:
-  - handheld
-FILE
 else
   run "compass init --using blueprint --app rails --css-dir public/stylesheets"
   get "https://github.com/aentos/rails3-templates/raw/master/application_blueprint.html.haml", "app/views/layouts/application.html.haml"
-  file "config/asset_packages.yml", <<-FILE
----
-javascripts:
-- base:
-  - rails
-stylesheets:
-- ie:
-  - ie
-- screen:
-  - screen
-- print:
-  - print
-- handheld:
-  - handheld
-FILE
 end
 create_file "app/stylesheets/partials/_colors.scss"
 get "https://github.com/aentos/rails3-templates/raw/master/handheld.scss" ,"app/stylesheets/handheld.scss"
