@@ -17,6 +17,7 @@ git :add => '.'
 git :commit => "-a -m 'Add heroku .slugignore'"
 
 heroku :create, app_name
+heroku :"config:add", 'BUNDLE_WITHOUT="development:test"'
 heroku :"addons:add", "custom_domains:basic"
 heroku :"addons:add", "exceptional:basic"
 heroku :"addons:add", "newrelic:bronze"
