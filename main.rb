@@ -61,18 +61,18 @@ gem 'awesome_print', :group => :development
 gem "hirb", :group => :development
 
 # testing
-gem "factory_girl_rails", :group => [:test, :cucumber]
+gem "factory_girl_rails", :group => [:test, :test]
 gem "shoulda", :group => [:test, :shoulda]
-gem "faker", :group => [:test, :cucumber]
+gem "faker", :group => [:test, :test]
 gem "mynyml-redgreen", :group => :test, :require => "redgreen"
 
-gem 'cucumber', "~> 0.10.0", :group => :cucumber
-gem 'cucumber-rails', "~> 0.3.2", :group => :cucumber
-gem 'capybara', "~> 0.4.1", :group => :cucumber
-gem 'database_cleaner', "~> 0.5.0", :group => :cucumber
-gem 'spork', "~> 0.8.4", :group => :cucumber
-gem "pickle", "~> 0.4.2", :group => :cucumber
-gem "launchy", :group => :cucumber
+gem 'cucumber', "~> 0.10.0", :group => :test
+gem 'cucumber-rails', "~> 0.3.2", :group => :test
+gem 'capybara', "~> 0.4.1", :group => :test
+gem 'database_cleaner', "~> 0.5.0", :group => :test
+gem 'spork', "~> 0.8.4", :group => :test
+gem "pickle", "~> 0.4.2", :group => :test
+gem "launchy", :group => :test
 
 # staging & production stuff
 gem 'pg', :group => :production
@@ -96,7 +96,7 @@ config.generators do |g|
   g.template_engine :haml
   g.test_framework  :shoulda, :fixture_replacement => :factory_girl
   g.fallbacks[:shoulda] = :test_unit
-  g.integration_tool :cucumber
+  g.integration_tool :test
   g.helper false
 end
 GENERATORS

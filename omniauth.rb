@@ -1,5 +1,5 @@
 gem 'omniauth'
-gem "fakeweb", :group => :cucumber
+gem "fakeweb", :group => :test
 run 'bundle install'
 
 create_file 'config/initializers/omniauth.rb', <<-FILE
