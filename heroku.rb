@@ -19,7 +19,7 @@ EOS
 # we commit the compiled stylesheets to the git repo
 # and tell compass to never compile
 append_file 'config/environments/production.rb', 'Sass::Plugin.options[:never_update] = true'
-gsub_file '.gitignore', /#^public\/stylesheets$/, ''
+gsub_file '.gitignore', /^public\/stylesheets$/, ''
 
 run "bundle exec compass compile --output-style compressed --force"
 
