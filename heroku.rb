@@ -21,6 +21,8 @@ EOS
 append_file 'config/environments/production.rb', 'Sass::Plugin.options[:never_update] = true'
 gsub_file '.gitignore', /#^public\/stylesheets$/, ''
 
+run "bundle exec compass compile --output-style compressed --force"
+
 git :add => '.'
 git :commit => "-a -m 'Add heroku .slugignore'"
 
