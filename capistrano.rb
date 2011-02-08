@@ -6,6 +6,7 @@ hoptoad = yes?"\r\n\r\nDo you want to include hoptoad notifier in your capistran
 gem "capistrano"
 gem "capistrano-ext", :require => "capistrano"
 
+run "cp config/environments/production.rb config/environments/staging.rb"
 
 run "bundle install"
 capify!
@@ -51,7 +52,7 @@ role :db,  "#{server}", :primary => true
 FILE
 
 file 'config/deploy.rb', <<-FILE
- 
+
 FILE
 git :add => '.'
 git :commit => '-m "Capistrano"'
