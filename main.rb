@@ -75,7 +75,6 @@ gem "pickle", "~> 0.4.2", :group => :test
 gem "launchy", :group => :test
 
 # staging & production stuff
-gem 'pg', :group => :production
 unless hoptoad_key.empty?
   gem "hoptoad_notifier", '~> 2.3.6'
   initializer 'hoptoad.rb', <<-FILE
