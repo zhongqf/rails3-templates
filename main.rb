@@ -70,7 +70,6 @@ gem 'cucumber', "~> 0.10.0", :group => :test
 gem 'cucumber-rails', "~> 0.3.2", :group => :test
 gem 'capybara', "~> 0.4.1", :group => :test
 gem 'database_cleaner', "~> 0.5.0", :group => :test
-gem 'spork', "~> 0.8.4", :group => :test
 gem "pickle", "~> 0.4.2", :group => :test
 gem "launchy", :group => :test
 
@@ -101,7 +100,7 @@ end
 GENERATORS
 
 # configure cucumber
-generate "cucumber:install --capybara --testunit --spork"
+generate "cucumber:install --capybara --testunit"
 generate "pickle --path --email"
 get "https://github.com/aentos/rails3-templates/raw/master/within_steps.rb" ,"features/step_definitions/within_steps.rb"
 
