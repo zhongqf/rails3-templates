@@ -43,7 +43,6 @@ gem "compass-960-plugin" if css_framework=="960"
 gem 'inherited_resources', '~> 1.1.2'
 gem "simple_form"
 gem "show_for"
-gem "tabs_on_rails"
 gem "meta_search"
 
 # other stuff
@@ -135,12 +134,6 @@ get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javas
 
 get "https://github.com/aentos/rails3-templates/raw/master/gitignore" ,".gitignore"
 get "https://github.com/aentos/rails3-templates/raw/master/build.rake", "lib/tasks/build.rake"
-
-append_file 'Rakefile', <<-METRIC_FU
-MetricFu::Configuration.run do |config|
-  config.rcov[:rcov_opts] << "-Ispec"
-end rescue nil
-METRIC_FU
 
 git :init
 git :add => '.'
