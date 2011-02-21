@@ -35,7 +35,6 @@ Stuff it will put in your app without asking
 * A CSS framework on top of compass: Choose between [960 Grid System](http://960.gs/) and [Blueprint CSS](http://www.blueprintcss.org/)
 
 ### Other
-* [will_paginate](https://github.com/mislav/will_paginate)
 * jQuery instead of Prototype
 * [inherited_resources](https://github.com/josevalim/inherited_resources) to help you keep your controllers DRY
 * [meta_search](https://github.com/ernie/meta_search)
@@ -48,6 +47,11 @@ Stuff it will let you choose from or opt-in
 * [Authlogic](https://github.com/binarylogic/authlogic)
 * [Devise](https://github.com/plataformatec/devise)
 * [Omniauth](https://github.com/intridea/omniauth)
+* or skip this step
+
+### Paginator
+* [will_paginate](https://github.com/mislav/will_paginate)
+* [Kaminari](https://github.com/amatsuda/kaminari)
 * or skip this step
 
 ### Form builders

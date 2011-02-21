@@ -7,6 +7,7 @@ puts "**************************************************************************
 hoptoad_key = ask("\r\n\r\nWant to use your Hoptoad Account? (Skip if you are deploying to heroku)\n\r\n\rEnter your API Key, or press Enter to skip")
 locale_str = ask("Enter a list of locales you want to use separated by commas (e.g. 'es, de, fr'). For a reference list visit https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale/. Press enter to skip: ")
 auth_option = ask("\r\n\r\nWhat authentication framework do you want to use?\r\n\r\n(1) Devise\r\n(2) Authlogic\r\n(3) Omniauth\r\nPress Enter to skip")
+paginator_option = ask("\r\n\r\nWhich paginator do you want to use?\r\n\r\n(1) will_paginate\r\n(2) Kaminari\r\nPress Enter to skip")
 deploy_option = ask("\r\n\r\nWhat deploy method/target do you want to use?\r\n\r\n(1) Capistrano\r\n(2) Heroku\r\nPress Enter to skip")
 css_framework_option = ask("\r\n\r\nWhat CSS framework do you want to use?\r\n\r\n(1) 960\r\n(2) Blueprint\r\nPress Enter for 960 (default)")
 form_builder_option = ask("\r\n\r\nWhat form/view builder do you want to use?\r\n\r\n(1) formtastic/attrtastic\r\n(2) simple_form/show_for\r\nPress Enter for formtastic/attrtastic (default)")
@@ -16,6 +17,11 @@ if ["1", "2", "3"].include?(auth_option)
   auth = "devise" if auth_option=="1"
   auth = "authlogic" if auth_option=="2"
   auth = "omniauth" if auth_option=="3"
+end
+
+if ["1", "2"].include?(paginator_option)
+  paginator = "will_paginate" if paginator_option=="1"
+  paginator = "kaminari" if paginator_option=="2"
 end
 
 if ["1", "2"].include?(deploy_option)
@@ -44,7 +50,11 @@ puts "**************************************************************************
 # GO!
 run "rm -Rf .gitignore README public/index.html public/images/rails.png public/javascripts/* app/views/layouts/*"
 
-gem 'will_paginate', '>=3.0.pre2'
+if paginator == "will_paginate"
+  gem 'will_paginate', '>=3.0.pre2'
+elsif paginator == "kaminari"
+  gem 'kaminari'
+end
 gem "haml-rails", ">= 0.2"
 gem "compass", ">= 0.10.5"
 gem "fancy-buttons"
