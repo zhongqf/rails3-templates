@@ -80,6 +80,14 @@ Contributions
 
 Feel free to fork the repo and send pull requests.
 
+Maintainers
+-----------
+* [Alberto Perdomo](https://github.com/albertoperdomo)
+
+Contributors
+------------
+* [Juanjo Bazán](http://github.com/xuanxu)
+
 Issues
 ======
 
