@@ -40,7 +40,6 @@ envs.split(", ").each do |env|
 
   # addons
   heroku :"addons:add", "custom_domains:basic"
-  heroku :"addons:add", "exceptional:basic"
   heroku :"addons:add", "newrelic:bronze"
   heroku :"addons:add", "cron:daily"
 
