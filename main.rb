@@ -175,6 +175,10 @@ get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javas
 get "https://github.com/aentos/rails3-templates/raw/master/gitignore" ,".gitignore"
 get "https://github.com/aentos/rails3-templates/raw/master/build.rake", "lib/tasks/build.rake"
 
+# keep development and test log files small: http://trevorturk.com/2010/10/14/limit-the-size-of-rails-3-log-files/
+['development','test'].each do |env|
+append_file "config/environments/#{env}.rb", 'config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)'
+
 git :init
 git :add => '.'
 git :commit => '-am "Initial commit"'
