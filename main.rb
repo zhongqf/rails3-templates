@@ -121,7 +121,7 @@ GENERATORS
 # configure cucumber
 generate "cucumber:install --capybara --testunit"
 generate "pickle --path --email"
-get "https://github.com/aentos/rails3-templates/raw/master/within_steps.rb" ,"features/step_definitions/within_steps.rb"
+get "https://github.com/zhongqf/rails3-templates/raw/master/within_steps.rb" ,"features/step_definitions/within_steps.rb"
 
 generate "friendly_id" if permalinks
 
@@ -154,13 +154,13 @@ end
 run "gem install compass"
 if css_framework=="960"
   run "bundle exec compass init -r ninesixty --using 960 --app rails --css-dir public/stylesheets"
-  get "https://github.com/aentos/rails3-templates/raw/master/application_960.html.haml", "app/views/layouts/application.html.haml"
+  get "https://github.com/zhongqf/rails3-templates/raw/master/application_960.html.haml", "app/views/layouts/application.html.haml"
 else
   run "bundle exec compass init --using blueprint --app rails --css-dir public/stylesheets"
-  get "https://github.com/aentos/rails3-templates/raw/master/application_blueprint.html.haml", "app/views/layouts/application.html.haml"
+  get "https://github.com/zhongqf/rails3-templates/raw/master/application_blueprint.html.haml", "app/views/layouts/application.html.haml"
 end
 create_file "app/stylesheets/partials/_colors.scss"
-get "https://github.com/aentos/rails3-templates/raw/master/handheld.scss" ,"app/stylesheets/handheld.scss"
+get "https://github.com/zhongqf/rails3-templates/raw/master/handheld.scss" ,"app/stylesheets/handheld.scss"
 
 unless locale_str.empty?
   locales = locale_str.split(",")
@@ -172,19 +172,23 @@ end
 # jquery
 get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
 
-get "https://github.com/aentos/rails3-templates/raw/master/gitignore" ,".gitignore"
-get "https://github.com/aentos/rails3-templates/raw/master/build.rake", "lib/tasks/build.rake"
+get "https://github.com/zhongqf/rails3-templates/raw/master/gitignore" ,".gitignore"
+get "https://github.com/zhongqf/rails3-templates/raw/master/build.rake", "lib/tasks/build.rake"
 
 # keep development and test log files small: http://trevorturk.com/2010/10/14/limit-the-size-of-rails-3-log-files/
 ['development','test'].each do |env|
-  append_file "config/environments/#{env}.rb", 'config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)'
+  inject_into_file 'config/environments/#{env}.rb', :before => "  end\nend" do
+    <<-RUBY
+      config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)
+    RUBY
+  end  
 end
 
 git :init
 git :add => '.'
 git :commit => '-am "Initial commit"'
 
-apply "https://github.com/aentos/rails3-templates/raw/master/#{auth}.rb" unless auth.blank?
-apply "https://github.com/aentos/rails3-templates/raw/master/#{deploy}.rb" unless deploy.blank?
+apply "https://github.com/zhongqf/rails3-templates/raw/master/#{auth}.rb" unless auth.blank?
+apply "https://github.com/zhongqf/rails3-templates/raw/master/#{deploy}.rb" unless deploy.blank?
 
 puts "SUCCESS!"
