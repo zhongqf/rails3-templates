@@ -179,7 +179,8 @@ get "https://github.com/zhongqf/rails3-templates/raw/master/build.rake", "lib/ta
 ['development','test'].each do |env|
   inject_into_file "config/environments/#{env}.rb", :before => "\nend" do
     <<-RUBY
-\n      config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)
+\n  #config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)
+\n  config.logger = Logger.new(config.paths.log.first, 1, 5242880)
     RUBY
   end  
 end
