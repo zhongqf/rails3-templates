@@ -177,7 +177,7 @@ get "https://github.com/zhongqf/rails3-templates/raw/master/build.rake", "lib/ta
 
 # keep development and test log files small: http://trevorturk.com/2010/10/14/limit-the-size-of-rails-3-log-files/
 ['development','test'].each do |env|
-  inject_into_file 'config/environments/#{env}.rb', :before => "  end\nend" do
+  inject_into_file "config/environments/#{env}.rb", :before => "  end\nend" do
     <<-RUBY
       config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)
     RUBY
