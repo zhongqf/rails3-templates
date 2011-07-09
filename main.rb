@@ -177,7 +177,8 @@ get "https://github.com/aentos/rails3-templates/raw/master/build.rake", "lib/tas
 
 # keep development and test log files small: http://trevorturk.com/2010/10/14/limit-the-size-of-rails-3-log-files/
 ['development','test'].each do |env|
-append_file "config/environments/#{env}.rb", 'config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)'
+  append_file "config/environments/#{env}.rb", 'config.logger = Logger.new(config.paths.log.first, 1, 5.megabytes)'
+end
 
 git :init
 git :add => '.'
